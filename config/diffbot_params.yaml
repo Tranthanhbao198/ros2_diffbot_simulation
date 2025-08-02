@@ -1,0 +1,16 @@
+# Các thông số vật lý và hiệu suất cho diffbot
+robot_params:
+  ros__parameters:
+    # Động học
+    wheel_radius: 0.4      # (mét)
+    wheel_separation: 1.2  # (mét) - Khoảng cách giữa tâm hai bánh xe
+
+    # Hiệu suất
+    max_linear_velocity: 5.0      # (m/s)
+    # Gia tốc: 0 -> 5m/s trong 5s => a = (5-0)/5 = 1 m/s^2
+    max_linear_acceleration: 1.0  # (m/s^2)
+    # Giảm tốc: Dừng từ tốc độ max trong 1s => a = (0-5)/1 = -5 m/s^2
+    # Giá trị này là dương vì nó là giới hạn gia tốc âm
+    max_linear_deceleration: 5.0  # (m/s^2)
+
+    max_angular_velocity: 1.57     # (rad/s)
