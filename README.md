@@ -1,80 +1,63 @@
-# ROS 2 Differential-Drive Robot Simulation
+Differential Drive Robot Simulation on ROS 2 Humble
+This is a simulation project for a differential drive robot using ROS 2 Humble and Gazebo.
+Prerequisites
+Ubuntu 22.04
+ROS 2 Humble Hawksbill
+Gazebo (installed with ros-humble-desktop)
+Colcon (the standard build tool for ROS 2)
+Git
+Installation and Build Instructions
+Follow these steps to set up and build the project.
+1. Create a Workspace and Clone the Project
+Open a terminal and run the following commands:
+code
+Bash
+# Create a new workspace directory and its src folder
+mkdir -p ~/ros2_ws/src
 
-This project contains a ROS 2 (Humble) simulation of a differential-drive mobile robot in Gazebo. The robot is controllable via keyboard and its physical and performance parameters can be configured through a YAML file.
+# Navigate into the src directory
+cd ~/ros2_ws/src
 
----
+# Clone the repository from GitHub
+git clone https://github.com/Tranthanhbao198/ros2_diffbot_simulation.git
+2. Install Dependencies
+Before building, you need to install the necessary packages for simulation and control.
+code
+Bash
+# Navigate to the root of your workspace
+cd ~/ros2_ws
 
-## Requirements
+# Update your system's package list
+sudo apt update
 
-*   Ubuntu 22.04
-*   ROS 2 Humble Hawksbill
-*   Gazebo (Modern Gazebo / Ignition)
-*   `ros-humble-ros-gz` for ROS-Gazebo integration
-*   `ros-humble-teleop-twist-keyboard` for manual control
-*   `python3-pandas`, `python3-matplotlib` for performance analysis
+# Install the required dependencies
+sudo apt-get install -y \
+  ros-humble-gazebo-ros-pkgs \
+  ros-humble-ros2-control \
+  ros-humble-ros2-controllers \
+  ros-humble-gazebo-ros2-control
+3. Build the Workspace
+Use colcon to build all packages in the workspace.
+code
+Bash
+# Navigate to the root of your workspace
+cd ~/ros2_ws
 
----
-
-## How to Build
-
-1.  Clone this repository into your `ros2_ws/src` directory.
-2.  Navigate to the root of your workspace (`~/ros2_ws`).
-3.  Install dependencies (if needed):
-    ```bash
-    rosdep install --from-paths src --ignore-src -r -y
-    ```
-4.  Build the package:
-    ```bash
-    colcon build --packages-select diffbot_sim
-    ```
-
----
-
-## How to Run
-
-1.  Source your workspace:
-    ```bash
-    source ~/ros2_ws/install/setup.bash
-    ```
-
-2.  Launch the main simulation file. This will open Gazebo, RViz, and a teleoperation terminal:
-    ```bash
-    ros2 launch diffbot_sim simulation.launch.py
-    ```
-
-3.  Click on the `xterm` window that opens and use the keyboard keys (`i`, `j`, `k`, `l`, etc.) to drive the robot.
-
----
-
-## How to Test Performance
-
-The project includes a script to verify the robot's performance (0-5m/s in 5s, stop in 1s).
-
-1.  Run the automated test script. This will start recording data, run the robot through an acceleration/deceleration cycle, and save the data to a `.bag` file in `~/ros2_ws/performance_bags/`.
-    ```bash
-    # Make sure the simulation is running first
-    ./performance_test.sh 
-    ```
-
-2.  Analyze the recorded data using the provided analysis script. This will generate a plot and print the results to the terminal.
-    ```bash
-    # Make sure to update the bag file path inside the script
-    python3 ~/ros2_ws/ana.py
-    ```
-
----
-
-## How to Extend (Modify Parameters)
-
-The robot's physical and performance parameters can be easily modified without changing the source code.
-
-1.  Open the configuration file: `config/diffbot_params.yaml`.
-2.  Change any parameter, for example:
-    ```yaml
-    # config/diffbot_params.yaml
-    ...
-    max_linear_acceleration: 2.0 # Make the robot accelerate faster
-    wheel_radius: 0.5            # Make the wheels bigger
-    ...
-    ```
-3.  Save the file, rebuild the package (`colcon build`), and relaunch the simulation to see the changes.
+# Build the project
+colcon build
+If the build process is successful, you will see a summary line like: Summary: 1 package finished.
+Usage Instructions
+After a successful build, you can launch the simulation.
+1. Source the Workspace
+In every new terminal, you must source the workspace environment so that ROS 2 can find your newly built packages.
+code
+Bash
+# Source the workspace's setup file
+source ~/ros2_ws/install/setup.bash
+Note: You must run this command in every new terminal where you intend to use this workspace's commands.
+2. Launch the Simulation
+Now, use the ros2 launch command to start the simulation in Gazebo.
+code
+Bash
+ros2 launch diffbot_sim diffbot.launch.py
+A Gazebo window will open with the robot model. You can now start interacting with and controlling the robot through ROS 2 topics
