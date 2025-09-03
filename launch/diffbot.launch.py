@@ -64,10 +64,10 @@ def generate_launch_description():
         # Thêm một chuỗi nữa vào danh sách arguments
         arguments=[
             # Cầu nối 1 (cũ): Từ ROS sang Gazebo cho điều khiển
-            '/cmd_vel@geometry_msgs/msg/Twist]gz.msgs.Twist',
+            '/cmd_vel@geometry_msgs/msg/Twist[gz.msgs.Twist',
             
             # Cầu nối 2 (mới): Từ Gazebo sang ROS cho odometry
-            '/odom@nav_msgs/msg/Odometry[gz.msgs.Odometry'
+            '/odom@nav_msgs/msg/Odometry]gz.msgs.Odometry'
         ],
         output='screen'
     )

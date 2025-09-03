@@ -9,6 +9,6 @@ def generate_launch_description():
             name='teleop_keyboard',
             output='screen',
             prefix='xterm -e',
-            remappings=[('/cmd_vel', '/cmd_vel')] # Plugin Gazebo đang nghe trên /cmd_vel
+            remappings=[('/cmd_vel', '/diff_cont/cmd_vel_unstamped')]  # Gazebo plugin listens on /diff_cont/cmd_vel_unstamped
         )
     ])

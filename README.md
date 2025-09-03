@@ -95,9 +95,6 @@ ros2 launch diffbot_sim diffbot.launch.py
 ```
 
 A Gazebo window will open with the robot model. You can now start interacting with and controlling the robot through ROS 2 topics.
-Of course! Here is that section translated into English, formatted with Markdown to continue directly from the previous part of your `README.md` file.
-
----
 
 ### 3. Controlling the Robot with a Keyboard (Teleop)
 
