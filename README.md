@@ -1,8 +1,4 @@
-Chắc chắn rồi! Dưới đây là nội dung file README đã được định dạng bằng Markdown để trông chuyên nghiệp và dễ đọc hơn trên GitHub.
 
-Bạn chỉ cần sao chép toàn bộ khối mã bên dưới và dán vào file `README.md` của bạn.
-
----
 
 # Differential Drive Robot Simulation on ROS 2 Humble 🤖
 
